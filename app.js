@@ -1,9 +1,527 @@
-const WA='212654283265';const products=[
-{id:1,name:'Everyday Classic Watch',cat:'Accessories',price:249,old:329,rate:4.8,img:'assets/product-watch.png',tag:'POPULAR'},
-{id:2,name:'Wireless Audio Headphones',cat:'Electronics',price:399,old:499,rate:4.7,img:'https://images.unsplash.com/photo-1505740420928-5e560c06d30d?auto=format&fit=crop&w=700&q=80',tag:'TRENDING'},
-{id:3,name:'Minimal Everyday Backpack',cat:'Fashion',price:289,rate:4.6,img:'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80',tag:'NEW'},
-{id:4,name:'Modern Ceramic Mug Set',cat:'Home',price:129,old:159,rate:4.9,img:'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=700&q=80',tag:'TOP RATED'},
-{id:5,name:'Daily Care Essentials',cat:'Beauty',price:179,rate:4.5,img:'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=700&q=80',tag:'PICKED FOR YOU'},
-{id:6,name:'Active Lifestyle Sneakers',cat:'Sports',price:459,old:549,rate:4.7,img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80',tag:'POPULAR'},
-{id:7,name:'Desk Setup Organizer',cat:'Home',price:99,rate:4.4,img:'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=700&q=80',tag:'SMART FIND'},
-{id:8,name:'Compact Everyday Earbuds',cat:'Electronics',price:219,old:279,rate:4.6,img:'https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=700&q=80',tag:'DEAL'}];let cat='All',query='',sort='featured',cart=JSON.parse(localStorage.getItem('modon-cart')||'[]');const $=s=>document.querySelector(s);const money=n=>'MAD '+n.toFixed(2);function showToast(t){$('#toast').textContent=t;$('#toast').style.display='block';setTimeout(()=>$('#toast').style.display='none',2000)}function render(){let a=products.filter(p=>(cat==='All'||p.cat===cat)&&(p.name+' '+p.cat).toLowerCase().includes(query.toLowerCase()));if(sort==='low')a.sort((x,y)=>x.price-y.price);if(sort==='high')a.sort((x,y)=>y.price-x.price);$('#grid').innerHTML=a.map(p=>`<article class="card"><div class="photo"><span class="tag">${p.tag}</span><img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.onerror=null;this.src='assets/product-watch.png'"></div><div class="info"><span class="category">${p.cat}</span><h3>${p.name}</h3><div class="rating">★★★★★ <span style="color:#8290a4">${p.rate}</span></div><div class="bottom"><div><span class="price">${money(p.price)}</span>${p.old?`<span class="old">${money(p.old)}</span>`:''}</div><button class="add" data-add="${p.id}">+</button></div></div></article>`).join('');$('#empty').hidden=!!a.length;$('#grid').hidden=!a.length;$('#count').textContent=cart.reduce((s,x)=>s+x.qty,0)}function renderCart(){let n=cart.reduce((s,x)=>s+x.qty,0);$('#count').textContent=n;$('#cartCount').textContent='('+n+')';$('#total').textContent=money(cart.reduce((s,x)=>s+x.price*x.qty,0));$('#items').innerHTML=cart.map(x=>`<div class="row"><img src="${x.img}" alt=""><div><b>${x.name}</b><small>${money(x.price)} · Qty ${x.qty}</small><button data-q="${x.id}" data-d="-1">−</button><button data-q="${x.id}" data-d="1">+</button><button data-r="${x.id}">Remove</button></div></div>`).join('')||'<p>Your cart is empty.</p>';localStorage.setItem('modon-cart',JSON.stringify(cart))}document.addEventListener('click',e=>{let b=e.target.closest('[data-add]');if(b){let p=products.find(x=>x.id===+b.dataset.add),x=cart.find(x=>x.id===p.id);x?x.qty++:cart.push({...p,qty:1});renderCart();showToast('Added to cart');return}b=e.target.closest('[data-cat]');if(b){cat=b.dataset.cat;render();$('#products').scrollIntoView({behavior:'smooth'});return}b=e.target.closest('[data-q]');if(b){let x=cart.find(x=>x.id===+b.dataset.q);x.qty+=+b.dataset.d;if(x.qty<1)cart=cart.filter(y=>y.id!==x.id);renderCart();return}b=e.target.closest('[data-r]');if(b){cart=cart.filter(x=>x.id!==+b.dataset.r);renderCart()}});$('#searchForm').onsubmit=e=>{e.preventDefault();query=$('#search').value.trim();render();$('#products').scrollIntoView({behavior:'smooth'})};$('#search').oninput=e=>{query=e.target.value.trim();render()};$('#sort').onchange=e=>{sort=e.target.value;render()};$('#cartOpen').onclick=()=>{$('#shade').classList.add('open');$('#drawer').classList.add('open');renderCart()};function closeCart(){$('#shade').classList.remove('open');$('#drawer').classList.remove('open')}$('#close').onclick=closeCart;$('#shade').onclick=closeCart;$('#wa').onclick=()=>{if(!cart.length)return showToast('Your cart is empty');let msg='Hello MODONSTORE, please tell me about availability and delivery for:%0A'+cart.map(x=>`${x.name} x${x.qty} — ${money(x.price*x.qty)}`).join('%0A')+'%0APlease confirm total and shipping.';window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(decodeURIComponent(msg)),'_blank','noopener')};$('#year').textContent=new Date().getFullYear();render();renderCart();
+const products = [
+  {
+    id: 1,
+    name: 'Galaxy A55 Smartphone',
+    category: 'Phones',
+    price: 499,
+    oldPrice: 699,
+    rating: 4.9,
+    image:
+      'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80',
+    tag: 'Popular',
+    description: '5G-ready smartphone with pro-grade camera and vivid screen.'
+  },
+  {
+    id: 2,
+    name: 'Aurora Wireless Earbuds',
+    category: 'Electronics',
+    price: 179,
+    oldPrice: 229,
+    rating: 4.8,
+    image:
+      'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=80',
+    tag: 'Hot',
+    description: 'Compact audio with deep bass and all-day battery life.'
+  },
+  {
+    id: 3,
+    name: 'Luna Skin Serum',
+    category: 'Cosmetics',
+    price: 64,
+    oldPrice: 89,
+    rating: 4.7,
+    image:
+      'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80',
+    tag: 'Best seller',
+    description: 'Hydrating serum with niacinamide for brighter, healthier skin.'
+  },
+  {
+    id: 4,
+    name: 'Urban Street Jacket',
+    category: 'Clothing',
+    price: 149,
+    oldPrice: 189,
+    rating: 4.6,
+    image:
+      'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80',
+    tag: 'New',
+    description: 'Lightweight everyday jacket designed for comfort and movement.'
+  },
+  {
+    id: 5,
+    name: 'Minimal Ceramic Set',
+    category: 'Home',
+    price: 89,
+    oldPrice: 120,
+    rating: 4.8,
+    image:
+      'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80',
+    tag: 'Top rated',
+    description: 'Modern dining pieces crafted for elevated everyday living.'
+  },
+  {
+    id: 6,
+    name: 'Glow Ritual Kit',
+    category: 'Beauty',
+    price: 109,
+    oldPrice: 149,
+    rating: 4.9,
+    image:
+      'https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=900&q=80',
+    tag: 'Featured',
+    description: 'A complete skincare bundle for dewy, fresh-looking skin.'
+  },
+  {
+    id: 7,
+    name: 'Nova Smartwatch',
+    category: 'Accessories',
+    price: 239,
+    oldPrice: 299,
+    rating: 4.8,
+    image:
+      'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80',
+    tag: 'Trending',
+    description: 'Slim design, fitness tracking, and a premium finish.'
+  },
+  {
+    id: 8,
+    name: 'Essence Lip Collection',
+    category: 'Cosmetics',
+    price: 52,
+    oldPrice: 74,
+    rating: 4.7,
+    image:
+      'https://images.unsplash.com/photo-1585386959984-a4155224a1ad?auto=format&fit=crop&w=900&q=80',
+    tag: 'Limited',
+    description: 'Vibrant shades with long-wear color and soft hydration.'
+  },
+  {
+    id: 9,
+    name: 'Flex Running Sneakers',
+    category: 'Sports',
+    price: 199,
+    oldPrice: 249,
+    rating: 4.7,
+    image:
+      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80',
+    tag: 'Sports',
+    description: 'Responsive everyday trainers for movement and comfort.'
+  },
+  {
+    id: 10,
+    name: 'Aero Desk Lamp',
+    category: 'Home',
+    price: 79,
+    oldPrice: 99,
+    rating: 4.6,
+    image:
+      'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80',
+    tag: 'Smart',
+    description: 'Adjustable lighting designed for focused work and calm evenings.'
+  },
+  {
+    id: 11,
+    name: 'Echo Bluetooth Speaker',
+    category: 'Electronics',
+    price: 129,
+    oldPrice: 179,
+    rating: 4.8,
+    image:
+      'https://images.unsplash.com/photo-1518444065439-e933c06ce9cd?auto=format&fit=crop&w=900&q=80',
+    tag: 'Deal',
+    description: 'Portable sound with rich depth, deep bass, and wireless setup.'
+  },
+  {
+    id: 12,
+    name: 'Classic Cotton Shirt',
+    category: 'Clothing',
+    price: 69,
+    oldPrice: 95,
+    rating: 4.5,
+    image:
+      'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80',
+    tag: 'Classic',
+    description: 'Premium cotton shirt with a relaxed fit and polished finish.'
+  },
+  {
+    id: 13,
+    name: 'Pro Camera Lens Kit',
+    category: 'Accessories',
+    price: 299,
+    oldPrice: 389,
+    rating: 4.9,
+    image:
+      'https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=900&q=80',
+    tag: 'New',
+    description: 'Create crisp images with premium optics built for mobile creators.'
+  },
+  {
+    id: 14,
+    name: 'Velvet Beauty Set',
+    category: 'Beauty',
+    price: 96,
+    oldPrice: 130,
+    rating: 4.8,
+    image:
+      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80',
+    tag: 'Gift set',
+    description: 'Luxury beauty essentials for a polished daily routine.'
+  },
+  {
+    id: 15,
+    name: 'Apex Leather Backpack',
+    category: 'Accessories',
+    price: 159,
+    oldPrice: 219,
+    rating: 4.7,
+    image:
+      'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=80',
+    tag: 'Travel',
+    description: 'Structured everyday carry with premium texture and smart storage.'
+  },
+  {
+    id: 16,
+    name: 'Solis Phone Stand',
+    category: 'Electronics',
+    price: 45,
+    oldPrice: 69,
+    rating: 4.6,
+    image:
+      'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80',
+    tag: 'Essential',
+    description: 'Adjustable stand for home office setups and hands-free viewing.'
+  }
+];
+
+const categories = ['All', ...new Set(products.map((product) => product.category))];
+const cart = [];
+
+const categoryTabs = document.getElementById('categoryTabs');
+const productGrid = document.getElementById('productGrid');
+const sortSelect = document.getElementById('sortSelect');
+const cartCount = document.getElementById('cartCount');
+const checkoutItems = document.getElementById('checkoutItems');
+const subtotalEl = document.getElementById('subtotal');
+const shippingEl = document.getElementById('shipping');
+const totalPriceEl = document.getElementById('totalPrice');
+const summaryCountEl = document.getElementById('summaryCount');
+const paymentForm = document.getElementById('paymentForm');
+
+let selectedCategory = 'All';
+
+function formatCurrency(value) {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  }).format(value);
+}
+
+function getFilteredProducts() {
+  let filtered =
+    selectedCategory === 'All'
+      ? [...products]
+      : products.filter((product) => product.category === selectedCategory);
+
+  const sortValue = sortSelect.value;
+
+  if (sortValue === 'price-low') {
+    filtered.sort((a, b) => a.price - b.price);
+  } else if (sortValue === 'price-high') {
+    filtered.sort((a, b) => b.price - a.price);
+  } else if (sortValue === 'rating') {
+    filtered.sort((a, b) => b.rating - a.rating);
+  }
+
+  return filtered;
+}
+
+function initializeCategories() {
+  categoryTabs.innerHTML = categories
+    .map(
+      (category) => `
+        <button
+          type="button"
+          class="category-btn ${selectedCategory === category ? 'active' : ''}"
+          data-category="${category}"
+        >
+          ${category}
+        </button>
+      `
+    )
+    .join('');
+
+  document.querySelectorAll('.category-btn').forEach((button) => {
+    button.addEventListener('click', () => {
+      selectedCategory = button.dataset.category;
+      initializeCategories();
+      renderProducts();
+    });
+  });
+}
+
+function renderProducts() {
+  const filteredProducts = getFilteredProducts();
+
+  if (!filteredProducts.length) {
+    productGrid.innerHTML = '<p class="empty-state">No products found in this category.</p>';
+    return;
+  }
+
+  productGrid.innerHTML = filteredProducts
+    .map(
+      (product) => `
+        <article class="product-card" aria-label="${product.name}">
+          <div class="product-image-wrap">
+            <img src="${product.image}" alt="${product.name}" loading="lazy" />
+            <span class="product-tag">${product.tag}</span>
+          </div>
+
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-category">${product.category}</span>
+              <span class="product-rating">★ ${product.rating}</span>
+            </div>
+
+            <h3 class="product-name">${product.name}</h3>
+            <p class="product-description">${product.description}</p>
+
+            <div class="price-row product-price-row">
+              <strong>${formatCurrency(product.price)}</strong>
+              <span>${formatCurrency(product.oldPrice || product.price)}</span>
+            </div>
+
+            <button type="button" class="btn btn-primary add-to-cart" data-id="${product.id}">
+              Add to cart
+            </button>
+          </div>
+        </article>
+      `
+    )
+    .join('');
+
+  document.querySelectorAll('.add-to-cart').forEach((button) => {
+    button.addEventListener('click', () => {
+      const productId = Number(button.dataset.id);
+      const product = products.find((item) => item.id === productId);
+      if (!product) return;
+
+      cart.push(product);
+      updateCartUI();
+      renderCheckout();
+    });
+  });
+}
+
+function updateCartUI() {
+  const totalItems = cart.length;
+  cartCount.textContent = totalItems;
+}
+
+function renderCheckout() {
+  if (!cart.length) {
+    checkoutItems.innerHTML = '<p class="empty-cart">Your cart is empty.</p>';
+    subtotalEl.textContent = formatCurrency(0);
+    shippingEl.textContent = formatCurrency(0);
+    totalPriceEl.textContent = formatCurrency(0);
+    summaryCountEl.textContent = '0 items';
+    return;
+  }
+
+  const subtotal = cart.reduce((sum, product) => sum + product.price, 0);
+  const shipping = subtotal > 150 ? 0 : 15;
+  const total = subtotal + shipping;
+
+  checkoutItems.innerHTML = cart
+    .map(
+      (product) => `
+        <div class="checkout-item">
+          <div>
+            <h4>${product.name}</h4>
+            <small>${product.category}</small>
+          </div>
+          <strong>${formatCurrency(product.price)}</strong>
+        </div>
+      `
+    )
+    .join('');
+
+  subtotalEl.textContent = formatCurrency(subtotal);
+  shippingEl.textContent = formatCurrency(shipping);
+  totalPriceEl.textContent = formatCurrency(total);
+  summaryCountEl.textContent = `${cart.length} item${cart.length > 1 ? 's' : ''}`;
+}
+
+function setCardMasking() {
+  const cardNumberInput = paymentForm.querySelector('input[name="cardNumber"]');
+  const expiryInput = paymentForm.querySelector('input[name="expiry"]');
+  const cvcInput = paymentForm.querySelector('input[name="cvc"]');
+
+  cardNumberInput.addEventListener('input', (event) => {
+    const digits = event.target.value.replace(/\D/g, '').slice(0, 16);
+    event.target.value = digits.replace(/(.{4})/g, '$1 ').trim();
+  });
+
+  expiryInput.addEventListener('input', (event) => {
+    let value = event.target.value.replace(/\D/g, '').slice(0, 4);
+    if (value.length > 2) {
+      value = `${value.slice(0, 2)}/${value.slice(2)}`;
+    }
+    event.target.value = value;
+  });
+
+  cvcInput.addEventListener('input', (event) => {
+    event.target.value = event.target.value.replace(/\D/g, '').slice(0, 4);
+  });
+}
+
+paymentForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const button = paymentForm.querySelector('button[type="submit"]');
+  button.textContent = 'Payment successful';
+  button.disabled = true;
+
+  const message = document.createElement('p');
+  message.className = 'success-message';
+  message.textContent = 'Your payment was processed successfully. Order confirmation is on the way.';
+  paymentForm.appendChild(message);
+});
+
+sortSelect.addEventListener('change', renderProducts);
+
+initializeCategories();
+renderProducts();
+renderCheckout();
+setCardMasking();
+updateCartUI();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -3,128 +3,616 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="MODONSTORE | Discover more. Shop smarter." />
-    <meta name="theme-color" content="#155eef" />
-    <title>MODONSTORE | Discover more</title>
+    <meta
+      name="description"
+      content="MODONSTORE premium online shopping for electronics, phones, cosmetics, clothing, home essentials, and more."
+    />
+    <meta name="theme-color" content="#1d4ed8" />
+    <title>MODONSTORE | Premium Shopping</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
 
   <body>
-    <header>
-      <nav>
-        <a href="#" class="logo">M<span>ODON</span>STORE</a>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="#" class="brand" aria-label="MODONSTORE home">M<span>ODON</span>STORE</a>
 
-        <ul class="nav-links">
-          <li><a href="#">All categories</a></li>
-          <li><a href="#">Electronics</a></li>
-          <li><a href="#">Fashion</a></li>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Beauty</a></li>
-        </ul>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="#shop">Shop</a>
+          <a href="#categories">Categories</a>
+          <a href="#checkout">Checkout</a>
+          <a href="#about">About</a>
+        </nav>
 
-        <button type="button" class="btn-add">Cart (0)</button>
-      </nav>
+        <button type="button" class="cart-toggle" aria-label="Cart">
+          <span>Cart</span>
+          <span id="cartCount" class="cart-count">0</span>
+        </button>
+      </div>
     </header>
 
     <main>
       <section class="hero">
-        <div class="container">
-          <p>THE MODONSTORE EDIT</p>
-          <h1>Discover more.<br /><span>Shop smarter.</span></h1>
-          <p>
-            Explore everyday essentials, fresh finds, and products picked to
-            make life better — all in one place.
-          </p>
-          <a href="#products" class="btn-primary">Explore products</a>
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow">THE MODONSTORE EDIT</p>
+            <h1>Discover more.<br /><span>Shop smarter.</span></h1>
+            <p class="hero-text">
+              Premium essentials, must-have tech, everyday fashion, skincare,
+              and home upgrades — all curated for modern life.
+            </p>
+            <div class="hero-actions">
+              <a href="#shop" class="btn btn-primary">Explore products</a>
+              <a href="#checkout" class="btn btn-secondary">Secure checkout</a>
+            </div>
+
+            <ul class="hero-highlights" aria-label="Store advantages">
+              <li>Free shipping over $75</li>
+              <li>Fast global delivery</li>
+              <li>Secure payment options</li>
+            </ul>
+          </div>
+
+          <div class="hero-panel" aria-label="Featured store overview">
+            <div class="panel-card featured-card">
+              <span class="tag">Featured</span>
+              <h3>Galaxy A55</h3>
+              <p>AI camera • 120Hz display • 5G</p>
+              <div class="price-row">
+                <strong>$499</strong>
+                <span>$699</span>
+              </div>
+            </div>
+
+            <div class="panel-card mini-card">
+              <span>24h sales</span>
+              <strong>+8.4%</strong>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="container">
-        <h2 class="section-title">Shop by category</h2>
+      <section class="container" id="categories">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow eyebrow-dark">EXPLORE YOUR INTERESTS</p>
+            <h2>Shop by category</h2>
+          </div>
+        </div>
+        <div id="categoryTabs" class="category-tabs" aria-label="Category filters"></div>
+      </section>
 
-        <div class="product-grid">
-          <article class="product-card">
-            <img src="product-watch.png" alt="Electronics" />
-            <div class="product-info">
-              <h3 class="product-title">Electronics</h3>
-              <p class="product-price">From $49</p>
-              <button type="button" class="btn-add">Browse</button>
-            </div>
-          </article>
+      <section class="container" id="shop">
+        <div class="section-head product-head">
+          <div>
+            <p class="eyebrow eyebrow-dark">HANDPICKED FOR YOU</p>
+            <h2>Discover something new</h2>
+          </div>
+          <div class="sort-box">
+            <label for="sortSelect">Sort by</label>
+            <select id="sortSelect" aria-label="Sort products">
+              <option value="featured">Featured</option>
+              <option value="price-low">Price: low to high</option>
+              <option value="price-high">Price: high to low</option>
+              <option value="rating">Top rated</option>
+            </select>
+          </div>
+        </div>
 
-          <article class="product-card">
-            <img src="product-watch.png" alt="Fashion" />
-            <div class="product-info">
-              <h3 class="product-title">Fashion</h3>
-              <p class="product-price">From $29</p>
-              <button type="button" class="btn-add">Browse</button>
-            </div>
-          </article>
+        <div id="productGrid" class="product-grid" aria-live="polite"></div>
+      </section>
 
-          <article class="product-card">
-            <img src="product-watch.png" alt="Home & Kitchen" />
-            <div class="product-info">
-              <h3 class="product-title">Home & Kitchen</h3>
-              <p class="product-price">From $39</p>
-              <button type="button" class="btn-add">Browse</button>
-            </div>
-          </article>
+      <section class="container trust-section" aria-label="Store benefits">
+        <div class="trust-item">
+          <strong>Free returns</strong>
+          <span>30-day easy returns</span>
+        </div>
+        <div class="trust-item">
+          <strong>Secure checkout</strong>
+          <span>Encrypted payment</span>
+        </div>
+        <div class="trust-item">
+          <strong>Fast delivery</strong>
+          <span>2-5 business days</span>
+        </div>
+        <div class="trust-item">
+          <strong>Top brands</strong>
+          <span>Trusted by 150k+ shoppers</span>
         </div>
       </section>
 
-      <section class="container" id="products">
-        <h2 class="section-title">Discover something new</h2>
-
-        <div class="product-grid">
-          <article class="product-card">
-            <img src="product-watch.png" alt="Smartwatch Pro" />
-            <div class="product-info">
-              <h3 class="product-title">Smartwatch Pro</h3>
-              <p>Modern design for everyday performance.</p>
-              <p class="product-price">$299</p>
-              <button type="button" class="btn-add">Add to cart</button>
+      <section id="checkout" class="container checkout-section">
+        <div class="checkout-card payment-card">
+          <div class="section-head small-head">
+            <div>
+              <p class="eyebrow eyebrow-dark">PAYMENT</p>
+              <h2>Complete your order</h2>
             </div>
-          </article>
+          </div>
 
-          <article class="product-card">
-            <img src="product-watch.png" alt="Wireless Speaker" />
-            <div class="product-info">
-              <h3 class="product-title">Wireless Speaker</h3>
-              <p>Clean sound and a premium finish.</p>
-              <p class="product-price">$169</p>
-              <button type="button" class="btn-add">Add to cart</button>
+          <form id="paymentForm" class="payment-form">
+            <div class="field-row">
+              <label>
+                Full name
+                <input type="text" name="name" placeholder="John Smith" required />
+              </label>
+              <label>
+                Email
+                <input type="email" name="email" placeholder="john@example.com" required />
+              </label>
             </div>
-          </article>
 
-          <article class="product-card">
-            <img src="product-watch.png" alt="Travel Backpack" />
-            <div class="product-info">
-              <h3 class="product-title">Travel Backpack</h3>
-              <p>Lightweight, durable and ready for travel.</p>
-              <p class="product-price">$119</p>
-              <button type="button" class="btn-add">Add to cart</button>
+            <div class="field-row">
+              <label>
+                Card number
+                <input type="text" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required />
+              </label>
             </div>
-          </article>
 
-          <article class="product-card">
-            <img src="product-watch.png" alt="Minimal Lamp" />
-            <div class="product-info">
-              <h3 class="product-title">Minimal Lamp</h3>
-              <p>An elegant lighting touch for any room.</p>
-              <p class="product-price">$89</p>
-              <button type="button" class="btn-add">Add to cart</button>
+            <div class="field-row">
+              <label>
+                Expiry date
+                <input type="text" name="expiry" placeholder="MM/YY" maxlength="5" required />
+              </label>
+              <label>
+                CVC
+                <input type="text" name="cvc" placeholder="123" maxlength="4" required />
+              </label>
             </div>
-          </article>
+
+            <label>
+              Billing address
+              <input type="text" name="address" placeholder="Street, City, Country" required />
+            </label>
+
+            <button type="submit" class="btn btn-primary submit-btn">Pay securely</button>
+          </form>
         </div>
+
+        <aside class="checkout-card summary-card" aria-live="polite">
+          <div class="summary-header">
+            <h3>Order summary</h3>
+            <span id="summaryCount">0 items</span>
+          </div>
+
+          <div id="checkoutItems" class="checkout-items"></div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-line">
+            <span>Subtotal</span>
+            <strong id="subtotal">$0.00</strong>
+          </div>
+          <div class="summary-line">
+            <span>Shipping</span>
+            <strong id="shipping">$0.00</strong>
+          </div>
+          <div class="summary-line total-line">
+            <span>Total</span>
+            <strong id="totalPrice">$0.00</strong>
+          </div>
+        </aside>
       </section>
     </main>
 
-    <footer>
-      <div class="container">
-        <p>MODONSTORE © 2026</p>
+    <footer class="site-footer" id="about">
+      <div class="container footer-inner">
+        <div class="brand-wrap">
+          <a href="#" class="brand">M<span>ODON</span>STORE</a>
+          <p>Curated essentials for a modern lifestyle.</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="#shop">Shop</a>
+          <a href="#categories">Categories</a>
+          <a href="#checkout">Checkout</a>
+        </div>
+
+        <p class="copyright">MODONSTORE © 2026</p>
       </div>
     </footer>
 
     <script src="./app.js" defer></script>
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+																																																																																											custom
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ""
