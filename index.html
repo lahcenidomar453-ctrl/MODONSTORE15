@@ -1,8 +1,130 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#155eef"><meta name="description" content="MODONSTORE — Discover more. Shop smarter."><title>MODONSTORE | Discover More</title><link rel="stylesheet" href="css/style.css"></head><body>
-<div class="topline">MODONSTORE · DISCOVER SOMETHING NEW</div><header><a class="logo" href="#"><b>M</b><span>MODON<span>STORE</span><small>DISCOVER MORE</small></span></a><form id="searchForm"><input id="search" placeholder="Search products and categories..."><button>⌕</button></form><button id="cartOpen" class="cart">Cart <b id="count">0</b></button></header>
-<nav id="nav"><button data-cat="All">All categories</button><button data-cat="Electronics">Electronics</button><button data-cat="Fashion">Fashion</button><button data-cat="Home">Home & Kitchen</button><button data-cat="Beauty">Beauty</button><button data-cat="Sports">Sports</button><button data-cat="Accessories">Accessories</button></nav>
-<main><section class="hero"><div><label>THE MODONSTORE EDIT</label><h1>Discover more.<br><em>Shop smarter.</em></h1><p>Explore everyday essentials, fresh finds and products picked to make life better — all in one place.</p><a class="primary" href="#products">Explore products →</a><div class="proof">✦ Curated finds　 ✓ Easy browsing　 ♡ Made for you</div></div><div class="hero-image"><div class="glow"></div><img src="assets/product-watch.png" alt="Featured watch"><span>FEATURED FIND · 01</span></div></section>
-<section class="section"><div class="heading"><div><label>EXPLORE YOUR INTERESTS</label><h2>Shop by category</h2><p>Start with what you love.</p></div></div><div class="cats"><button data-cat="Electronics"><i>⌁</i><b>Electronics</b><small>Tech for everyday</small></button><button data-cat="Fashion"><i>✧</i><b>Fashion</b><small>Find your style</small></button><button data-cat="Home"><i>⌂</i><b>Home & Kitchen</b><small>Make it feel like home</small></button><button data-cat="Beauty"><i>✿</i><b>Beauty</b><small>Little daily rituals</small></button><button data-cat="Sports"><i>◉</i><b>Sports</b><small>Move your way</small></button><button data-cat="Accessories"><i>◇</i><b>Accessories</b><small>Details that matter</small></button></div></section>
-<section class="section" id="products"><div class="heading product-heading"><div><label>HANDPICKED FOR YOU</label><h2>Discover something new</h2><p>Explore our starter collection.</p></div><select id="sort"><option value="featured">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select></div><div id="grid" class="grid"></div><p id="empty" hidden>No products found. Try another search.</p></section>
-<section class="newsletter"><label>THE GOOD FINDS CLUB</label><h2>A little inspiration, now and then.</h2><p>New finds and product highlights, all in one place.</p><a class="primary" href="#products">Explore the collection →</a></section></main><footer><div class="logo"><b>M</b><span>MODON<span>STORE</span><small>DISCOVER MORE</small></span></div><p>A fresh, simple way to discover products for everyday life.</p><small>© <span id="year"></span> MODONSTORE · Demo storefront</small></footer>
-<div id="shade"></div><aside id="drawer"><button id="close">×</button><h2>Your cart <small id="cartCount">(0)</small></h2><div id="items"></div><hr><h3>Subtotal: <span id="total">MAD 0.00</span></h3><p class="note">Demo version: no online payment or order database is connected.</p><button id="wa" class="primary">Ask about order on WhatsApp ↗</button></aside><div id="toast"></div><script src="js/app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="MODONSTORE | Discover more. Shop smarter." />
+    <meta name="theme-color" content="#155eef" />
+    <title>MODONSTORE | Discover more</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <a href="#" class="logo">M<span>ODON</span>STORE</a>
+
+        <ul class="nav-links">
+          <li><a href="#">All categories</a></li>
+          <li><a href="#">Electronics</a></li>
+          <li><a href="#">Fashion</a></li>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Beauty</a></li>
+        </ul>
+
+        <button type="button" class="btn-add">Cart (0)</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <p>THE MODONSTORE EDIT</p>
+          <h1>Discover more.<br /><span>Shop smarter.</span></h1>
+          <p>
+            Explore everyday essentials, fresh finds, and products picked to
+            make life better — all in one place.
+          </p>
+          <a href="#products" class="btn-primary">Explore products</a>
+        </div>
+      </section>
+
+      <section class="container">
+        <h2 class="section-title">Shop by category</h2>
+
+        <div class="product-grid">
+          <article class="product-card">
+            <img src="product-watch.png" alt="Electronics" />
+            <div class="product-info">
+              <h3 class="product-title">Electronics</h3>
+              <p class="product-price">From $49</p>
+              <button type="button" class="btn-add">Browse</button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <img src="product-watch.png" alt="Fashion" />
+            <div class="product-info">
+              <h3 class="product-title">Fashion</h3>
+              <p class="product-price">From $29</p>
+              <button type="button" class="btn-add">Browse</button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <img src="product-watch.png" alt="Home & Kitchen" />
+            <div class="product-info">
+              <h3 class="product-title">Home & Kitchen</h3>
+              <p class="product-price">From $39</p>
+              <button type="button" class="btn-add">Browse</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="container" id="products">
+        <h2 class="section-title">Discover something new</h2>
+
+        <div class="product-grid">
+          <article class="product-card">
+            <img src="product-watch.png" alt="Smartwatch Pro" />
+            <div class="product-info">
+              <h3 class="product-title">Smartwatch Pro</h3>
+              <p>Modern design for everyday performance.</p>
+              <p class="product-price">$299</p>
+              <button type="button" class="btn-add">Add to cart</button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <img src="product-watch.png" alt="Wireless Speaker" />
+            <div class="product-info">
+              <h3 class="product-title">Wireless Speaker</h3>
+              <p>Clean sound and a premium finish.</p>
+              <p class="product-price">$169</p>
+              <button type="button" class="btn-add">Add to cart</button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <img src="product-watch.png" alt="Travel Backpack" />
+            <div class="product-info">
+              <h3 class="product-title">Travel Backpack</h3>
+              <p>Lightweight, durable and ready for travel.</p>
+              <p class="product-price">$119</p>
+              <button type="button" class="btn-add">Add to cart</button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <img src="product-watch.png" alt="Minimal Lamp" />
+            <div class="product-info">
+              <h3 class="product-title">Minimal Lamp</h3>
+              <p>An elegant lighting touch for any room.</p>
+              <p class="product-price">$89</p>
+              <button type="button" class="btn-add">Add to cart</button>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>MODONSTORE © 2026</p>
+      </div>
+    </footer>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>
