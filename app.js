@@ -1,4 +1,7 @@
-const products = [
+const STORAGE_KEY = 'modonstore_products_v1';
+const WA_NUMBER = '212654283265';
+
+const defaultProducts = [
   {
     id: 1,
     name: 'Galaxy A55 Smartphone',
@@ -6,8 +9,7 @@ const products = [
     price: 499,
     oldPrice: 699,
     rating: 4.9,
-    image:
-      'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80',
+    image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80',
     tag: 'Popular',
     description: '5G-ready smartphone with pro-grade camera and vivid screen.'
   },
@@ -18,8 +20,7 @@ const products = [
     price: 179,
     oldPrice: 229,
     rating: 4.8,
-    image:
-      'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=80',
+    image: 'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=80',
     tag: 'Hot',
     description: 'Compact audio with deep bass and all-day battery life.'
   },
@@ -30,8 +31,7 @@ const products = [
     price: 64,
     oldPrice: 89,
     rating: 4.7,
-    image:
-      'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80',
+    image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80',
     tag: 'Best seller',
     description: 'Hydrating serum with niacinamide for brighter, healthier skin.'
   },
@@ -42,8 +42,7 @@ const products = [
     price: 149,
     oldPrice: 189,
     rating: 4.6,
-    image:
-      'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80',
+    image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80',
     tag: 'New',
     description: 'Lightweight everyday jacket designed for comfort and movement.'
   },
@@ -54,8 +53,7 @@ const products = [
     price: 89,
     oldPrice: 120,
     rating: 4.8,
-    image:
-      'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80',
+    image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80',
     tag: 'Top rated',
     description: 'Modern dining pieces crafted for elevated everyday living.'
   },
@@ -66,8 +64,7 @@ const products = [
     price: 109,
     oldPrice: 149,
     rating: 4.9,
-    image:
-      'https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=900&q=80',
+    image: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=900&q=80',
     tag: 'Featured',
     description: 'A complete skincare bundle for dewy, fresh-looking skin.'
   },
@@ -78,8 +75,7 @@ const products = [
     price: 239,
     oldPrice: 299,
     rating: 4.8,
-    image:
-      'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80',
+    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80',
     tag: 'Trending',
     description: 'Slim design, fitness tracking, and a premium finish.'
   },
@@ -90,8 +86,7 @@ const products = [
     price: 52,
     oldPrice: 74,
     rating: 4.7,
-    image:
-      'https://images.unsplash.com/photo-1585386959984-a4155224a1ad?auto=format&fit=crop&w=900&q=80',
+    image: 'https://images.unsplash.com/photo-1585386959984-a4155224a1ad?auto=format&fit=crop&w=900&q=80',
     tag: 'Limited',
     description: 'Vibrant shades with long-wear color and soft hydration.'
   },
@@ -102,8 +97,7 @@ const products = [
     price: 199,
     oldPrice: 249,
     rating: 4.7,
-    image:
-      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80',
+    image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80',
     tag: 'Sports',
     description: 'Responsive everyday trainers for movement and comfort.'
   },
@@ -114,87 +108,15 @@ const products = [
     price: 79,
     oldPrice: 99,
     rating: 4.6,
-    image:
-      'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80',
+    image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80',
     tag: 'Smart',
     description: 'Adjustable lighting designed for focused work and calm evenings.'
-  },
-  {
-    id: 11,
-    name: 'Echo Bluetooth Speaker',
-    category: 'Electronics',
-    price: 129,
-    oldPrice: 179,
-    rating: 4.8,
-    image:
-      'https://images.unsplash.com/photo-1518444065439-e933c06ce9cd?auto=format&fit=crop&w=900&q=80',
-    tag: 'Deal',
-    description: 'Portable sound with rich depth, deep bass, and wireless setup.'
-  },
-  {
-    id: 12,
-    name: 'Classic Cotton Shirt',
-    category: 'Clothing',
-    price: 69,
-    oldPrice: 95,
-    rating: 4.5,
-    image:
-      'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80',
-    tag: 'Classic',
-    description: 'Premium cotton shirt with a relaxed fit and polished finish.'
-  },
-  {
-    id: 13,
-    name: 'Pro Camera Lens Kit',
-    category: 'Accessories',
-    price: 299,
-    oldPrice: 389,
-    rating: 4.9,
-    image:
-      'https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=900&q=80',
-    tag: 'New',
-    description: 'Create crisp images with premium optics built for mobile creators.'
-  },
-  {
-    id: 14,
-    name: 'Velvet Beauty Set',
-    category: 'Beauty',
-    price: 96,
-    oldPrice: 130,
-    rating: 4.8,
-    image:
-      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80',
-    tag: 'Gift set',
-    description: 'Luxury beauty essentials for a polished daily routine.'
-  },
-  {
-    id: 15,
-    name: 'Apex Leather Backpack',
-    category: 'Accessories',
-    price: 159,
-    oldPrice: 219,
-    rating: 4.7,
-    image:
-      'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=80',
-    tag: 'Travel',
-    description: 'Structured everyday carry with premium texture and smart storage.'
-  },
-  {
-    id: 16,
-    name: 'Solis Phone Stand',
-    category: 'Electronics',
-    price: 45,
-    oldPrice: 69,
-    rating: 4.6,
-    image:
-      'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80',
-    tag: 'Essential',
-    description: 'Adjustable stand for home office setups and hands-free viewing.'
   }
 ];
 
-const categories = ['All', ...new Set(products.map((product) => product.category))];
 const cart = [];
+let products = loadProducts();
+let selectedCategory = 'All';
 
 const categoryTabs = document.getElementById('categoryTabs');
 const productGrid = document.getElementById('productGrid');
@@ -206,14 +128,37 @@ const shippingEl = document.getElementById('shipping');
 const totalPriceEl = document.getElementById('totalPrice');
 const summaryCountEl = document.getElementById('summaryCount');
 const paymentForm = document.getElementById('paymentForm');
+const productForm = document.getElementById('productForm');
+const adminProductList = document.getElementById('adminProductList');
+const resetFormBtn = document.getElementById('resetForm');
 
-let selectedCategory = 'All';
+function loadProducts() {
+  try {
+    const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (Array.isArray(stored) && stored.length) {
+      return stored;
+    }
+  } catch (error) {
+    console.warn('Could not load stored products:', error);
+  }
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultProducts));
+  return [...defaultProducts];
+}
+
+function saveProducts() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+}
 
 function formatCurrency(value) {
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD'
   }).format(value);
+}
+
+function getCategories() {
+  return ['All', ...new Set(products.map((product) => product.category))];
 }
 
 function getFilteredProducts() {
@@ -236,6 +181,8 @@ function getFilteredProducts() {
 }
 
 function initializeCategories() {
+  const categories = getCategories();
+
   categoryTabs.innerHTML = categories
     .map(
       (category) => `
@@ -273,7 +220,7 @@ function renderProducts() {
         <article class="product-card" aria-label="${product.name}">
           <div class="product-image-wrap">
             <img src="${product.image}" alt="${product.name}" loading="lazy" />
-            <span class="product-tag">${product.tag}</span>
+            <span class="product-tag">${product.tag || 'New'}</span>
           </div>
 
           <div class="product-info">
@@ -313,8 +260,7 @@ function renderProducts() {
 }
 
 function updateCartUI() {
-  const totalItems = cart.length;
-  cartCount.textContent = totalItems;
+  cartCount.textContent = String(cart.length);
 }
 
 function renderCheckout() {
@@ -327,7 +273,7 @@ function renderCheckout() {
     return;
   }
 
-  const subtotal = cart.reduce((sum, product) => sum + product.price, 0);
+  const subtotal = cart.reduce((sum, product) => sum + Number(product.price), 0);
   const shipping = subtotal > 150 ? 0 : 15;
   const total = subtotal + shipping;
 
@@ -357,12 +303,12 @@ function setCardMasking() {
   const cvcInput = paymentForm.querySelector('input[name="cvc"]');
 
   cardNumberInput.addEventListener('input', (event) => {
-    const digits = event.target.value.replace(/\\D/g, '').slice(0, 16);
+    const digits = event.target.value.replace(/\D/g, '').slice(0, 16);
     event.target.value = digits.replace(/(.{4})/g, '$1 ').trim();
   });
 
   expiryInput.addEventListener('input', (event) => {
-    let value = event.target.value.replace(/\\D/g, '').slice(0, 4);
+    let value = event.target.value.replace(/\D/g, '').slice(0, 4);
     if (value.length > 2) {
       value = `${value.slice(0, 2)}/${value.slice(2)}`;
     }
@@ -370,14 +316,110 @@ function setCardMasking() {
   });
 
   cvcInput.addEventListener('input', (event) => {
-    event.target.value = event.target.value.replace(/\\D/g, '').slice(0, 4);
+    event.target.value = event.target.value.replace(/\D/g, '').slice(0, 4);
   });
+}
+
+function resetProductForm() {
+  document.getElementById('productId').value = '';
+  document.getElementById('productName').value = '';
+  document.getElementById('productCategory').value = '';
+  document.getElementById('productPrice').value = '';
+  document.getElementById('productOldPrice').value = '';
+  document.getElementById('productRating').value = '4.7';
+  document.getElementById('productTag').value = '';
+  document.getElementById('productImage').value = '';
+  document.getElementById('productDescription').value = '';
+}
+
+function renderAdminProducts() {
+  adminProductList.innerHTML = products
+    .map(
+      (product) => `
+        <div class="admin-product-item">
+          <div class="admin-product-details">
+            <strong>${product.name}</strong>
+            <span>${product.category} • ${formatCurrency(product.price)}</span>
+          </div>
+          <div class="admin-actions">
+            <button type="button" class="mini-btn edit-btn" data-id="${product.id}">Edit</button>
+            <button type="button" class="mini-btn delete-btn" data-id="${product.id}">Delete</button>
+          </div>
+        </div>
+      `
+    )
+    .join('');
+
+  document.querySelectorAll('.edit-btn').forEach((button) => {
+    button.addEventListener('click', () => {
+      const product = products.find((item) => item.id === Number(button.dataset.id));
+      if (!product) return;
+
+      document.getElementById('productId').value = product.id;
+      document.getElementById('productName').value = product.name;
+      document.getElementById('productCategory').value = product.category;
+      document.getElementById('productPrice').value = product.price;
+      document.getElementById('productOldPrice').value = product.oldPrice || '';
+      document.getElementById('productRating').value = product.rating;
+      document.getElementById('productTag').value = product.tag || '';
+      document.getElementById('productImage').value = product.image;
+      document.getElementById('productDescription').value = product.description;
+
+      window.location.hash = '#admin';
+    });
+  });
+
+  document.querySelectorAll('.delete-btn').forEach((button) => {
+    button.addEventListener('click', () => {
+      const productId = Number(button.dataset.id);
+      products = products.filter((product) => product.id !== productId);
+      saveProducts();
+      initializeCategories();
+      renderProducts();
+      renderAdminProducts();
+    });
+  });
+}
+
+function handleProductSubmit(event) {
+  event.preventDefault();
+
+  const productId = document.getElementById('productId').value;
+  const productData = {
+    id: productId ? Number(productId) : Date.now(),
+    name: document.getElementById('productName').value.trim(),
+    category: document.getElementById('productCategory').value.trim(),
+    price: Number(document.getElementById('productPrice').value),
+    oldPrice: Number(document.getElementById('productOldPrice').value || 0),
+    rating: Number(document.getElementById('productRating').value),
+    tag: document.getElementById('productTag').value.trim() || 'New',
+    image: document.getElementById('productImage').value.trim(),
+    description: document.getElementById('productDescription').value.trim()
+  };
+
+  if (!productData.name || !productData.category || !productData.image || !productData.description) {
+    return;
+  }
+
+  if (productId) {
+    products = products.map((product) =>
+      product.id === Number(productId) ? { ...product, ...productData } : product
+    );
+  } else {
+    products.unshift(productData);
+  }
+
+  saveProducts();
+  initializeCategories();
+  renderProducts();
+  renderAdminProducts();
+  resetProductForm();
 }
 
 paymentForm.addEventListener('submit', (event) => {
   event.preventDefault();
 
-  const button = paymentForm.querySelector('button[type=\"submit\"]');
+  const button = paymentForm.querySelector('button[type="submit"]');
   button.textContent = 'Payment successful';
   button.disabled = true;
 
@@ -387,10 +429,19 @@ paymentForm.addEventListener('submit', (event) => {
   paymentForm.appendChild(message);
 });
 
+productForm.addEventListener('submit', handleProductSubmit);
+resetFormBtn.addEventListener('click', resetProductForm);
 sortSelect.addEventListener('change', renderProducts);
 
 initializeCategories();
 renderProducts();
 renderCheckout();
+renderAdminProducts();
 setCardMasking();
 updateCartUI();
+resetProductForm();
+
+const waLink = document.querySelector('.whatsapp-float');
+if (waLink) {
+  waLink.setAttribute('href', `https://wa.me/${WA_NUMBER}`);
+}
