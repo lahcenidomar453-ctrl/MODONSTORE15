@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="MODONSTORE متجر إلكتروني احترافي للأجهزة، المكياج، الملابس، المنزل، والإكسسوارات."
+      content="MODONSTORE premium online shopping for electronics, phones, cosmetics, clothing, home essentials, and more."
     />
     <meta name="theme-color" content="#1d4ed8" />
-    <title>MODONSTORE | متجر احترافي</title>
+    <title>MODONSTORE | Premium Shopping</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
 
@@ -18,14 +18,14 @@
         <a href="#" class="brand" aria-label="MODONSTORE home">M<span>ODON</span>STORE</a>
 
         <nav class="main-nav" aria-label="Main navigation">
-          <a href="#shop">المتجر</a>
-          <a href="#categories">الأقسام</a>
-          <a href="#checkout">الدفع</a>
-          <a href="#about">من نحن</a>
+          <a href="#shop">Shop</a>
+          <a href="#categories">Categories</a>
+          <a href="#admin">Products</a>
+          <a href="#checkout">Checkout</a>
         </nav>
 
         <button type="button" class="cart-toggle" aria-label="Cart">
-          <span>السلة</span>
+          <span>Cart</span>
           <span id="cartCount" class="cart-count">0</span>
         </button>
       </div>
@@ -36,28 +36,28 @@
         <div class="container hero-inner">
           <div class="hero-copy">
             <p class="eyebrow">THE MODONSTORE EDIT</p>
-            <h1>اكتشف أكثر.<br /><span>تسوق بذكاء.</span></h1>
+            <h1>Discover more.<br /><span>Shop smarter.</span></h1>
             <p class="hero-text">
-              منتجات عالية الجودة، تكنولوجيا حديثة، أزياء يومية، منتجات العناية
-              بالبشرة، واحتياجات المنزل — semuanya مختارة بعناية.
+              Premium essentials, must-have tech, everyday fashion, skincare,
+              and home upgrades — all curated for modern life.
             </p>
             <div class="hero-actions">
-              <a href="#shop" class="btn btn-primary">تصفح المنتجات</a>
-              <a href="#checkout" class="btn btn-secondary">الدفع الآمن</a>
+              <a href="#shop" class="btn btn-primary">Explore products</a>
+              <a href="#checkout" class="btn btn-secondary">Secure checkout</a>
             </div>
 
             <ul class="hero-highlights" aria-label="Store advantages">
-              <li>شحن مجاني فوق 75 دولار</li>
-              <li>توصيل سريع</li>
-              <li>دفع آمن</li>
+              <li>Free shipping over $75</li>
+              <li>Fast global delivery</li>
+              <li>Secure payment options</li>
             </ul>
           </div>
 
-          <div class="hero-panel" aria-label="Featured store overview">
+          <div class="hero-panel">
             <div class="panel-card featured-card">
-              <span class="tag">مميز</span>
+              <span class="tag">Featured</span>
               <h3>Galaxy A55</h3>
-              <p>كاميرا ذكية • شاشة 120Hz • 5G</p>
+              <p>AI camera • 120Hz display • 5G</p>
               <div class="price-row">
                 <strong>$499</strong>
                 <span>$699</span>
@@ -65,7 +65,7 @@
             </div>
 
             <div class="panel-card mini-card">
-              <span>مبيعات اليوم</span>
+              <span>24h sales</span>
               <strong>+8.4%</strong>
             </div>
           </div>
@@ -75,8 +75,8 @@
       <section class="container" id="categories">
         <div class="section-head">
           <div>
-            <p class="eyebrow eyebrow-dark">اكتشف اهتماماتك</p>
-            <h2>تسوق حسب الفئة</h2>
+            <p class="eyebrow eyebrow-dark">EXPLORE YOUR INTERESTS</p>
+            <h2>Shop by category</h2>
           </div>
         </div>
         <div id="categoryTabs" class="category-tabs" aria-label="Category filters"></div>
@@ -85,16 +85,16 @@
       <section class="container" id="shop">
         <div class="section-head product-head">
           <div>
-            <p class="eyebrow eyebrow-dark">منتجات مختارة لك</p>
-            <h2>اكتشف شيئًا جديدًا</h2>
+            <p class="eyebrow eyebrow-dark">HANDPICKED FOR YOU</p>
+            <h2>Discover something new</h2>
           </div>
           <div class="sort-box">
-            <label for="sortSelect">ترتيب حسب</label>
-            <select id="sortSelect" aria-label="Sort products">
-              <option value="featured">الأكثر تميزا</option>
-              <option value="price-low">السعر: الأقل إلى الأعلى</option>
-              <option value="price-high">السعر: الأعلى إلى الأقل</option>
-              <option value="rating">الأعلى تقييمًا</option>
+            <label for="sortSelect">Sort by</label>
+            <select id="sortSelect">
+              <option value="featured">Featured</option>
+              <option value="price-low">Price: low to high</option>
+              <option value="price-high">Price: high to low</option>
+              <option value="rating">Top rated</option>
             </select>
           </div>
         </div>
@@ -102,22 +102,90 @@
         <div id="productGrid" class="product-grid" aria-live="polite"></div>
       </section>
 
+      <section class="container admin-section" id="admin">
+        <div class="section-head admin-head">
+          <div>
+            <p class="eyebrow eyebrow-dark">PRODUCT MANAGEMENT</p>
+            <h2>Manage products</h2>
+          </div>
+        </div>
+
+        <div class="admin-layout">
+          <form id="productForm" class="admin-form">
+            <input type="hidden" id="productId" />
+
+            <div class="field-row">
+              <label>
+                Product name
+                <input type="text" id="productName" placeholder="New product" required />
+              </label>
+              <label>
+                Category
+                <input type="text" id="productCategory" placeholder="Phones" required />
+              </label>
+            </div>
+
+            <div class="field-row">
+              <label>
+                Price ($)
+                <input type="number" id="productPrice" min="0" step="0.01" required />
+              </label>
+              <label>
+                Old price ($)
+                <input type="number" id="productOldPrice" min="0" step="0.01" />
+              </label>
+            </div>
+
+            <div class="field-row">
+              <label>
+                Rating
+                <input type="number" id="productRating" min="1" max="5" step="0.1" value="4.7" required />
+              </label>
+              <label>
+                Tag
+                <input type="text" id="productTag" placeholder="Popular" />
+              </label>
+            </div>
+
+            <label>
+              Image URL
+              <input type="url" id="productImage" placeholder="https://..." required />
+            </label>
+
+            <label>
+              Description
+              <textarea id="productDescription" rows="4" placeholder="Describe the product" required></textarea>
+            </label>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Save product</button>
+              <button type="button" id="resetForm" class="btn btn-secondary">Reset</button>
+            </div>
+          </form>
+
+          <div class="admin-list-panel">
+            <h3>Current products</h3>
+            <div id="adminProductList" class="admin-product-list"></div>
+          </div>
+        </div>
+      </section>
+
       <section class="container trust-section" aria-label="Store benefits">
         <div class="trust-item">
-          <strong>إرجاع مجاني</strong>
-          <span>إرجاع خلال 30 يومًا</span>
+          <strong>Free returns</strong>
+          <span>30-day easy returns</span>
         </div>
         <div class="trust-item">
-          <strong>دفع آمن</strong>
-          <span>تشفير كامل للمدفوعات</span>
+          <strong>Secure checkout</strong>
+          <span>Encrypted payment</span>
         </div>
         <div class="trust-item">
-          <strong>توصيل سريع</strong>
-          <span>من 2 إلى 5 أيام</span>
+          <strong>Fast delivery</strong>
+          <span>2-5 business days</span>
         </div>
         <div class="trust-item">
-          <strong>علامات موثوقة</strong>
-          <span>مفضلة من قبل 150k عميل</span>
+          <strong>Top brands</strong>
+          <span>Trusted by 150k+ shoppers</span>
         </div>
       </section>
 
@@ -125,33 +193,33 @@
         <div class="checkout-card payment-card">
           <div class="section-head small-head">
             <div>
-              <p class="eyebrow eyebrow-dark">الدفع</p>
-              <h2>أكمل طلبك</h2>
+              <p class="eyebrow eyebrow-dark">PAYMENT</p>
+              <h2>Complete your order</h2>
             </div>
           </div>
 
           <form id="paymentForm" class="payment-form">
             <div class="field-row">
               <label>
-                الاسم الكامل
-                <input type="text" name="name" placeholder="جون سميث" required />
+                Full name
+                <input type="text" name="name" placeholder="John Smith" required />
               </label>
               <label>
-                البريد الإلكتروني
+                Email
                 <input type="email" name="email" placeholder="john@example.com" required />
               </label>
             </div>
 
             <div class="field-row">
               <label>
-                رقم البطاقة
+                Card number
                 <input type="text" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required />
               </label>
             </div>
 
             <div class="field-row">
               <label>
-                تاريخ الانتهاء
+                Expiry date
                 <input type="text" name="expiry" placeholder="MM/YY" maxlength="5" required />
               </label>
               <label>
@@ -161,18 +229,18 @@
             </div>
 
             <label>
-              عنوان الفاتورة
-              <input type="text" name="address" placeholder="المدينة، الشارع، الدولة" required />
+              Billing address
+              <input type="text" name="address" placeholder="Street, City, Country" required />
             </label>
 
-            <button type="submit" class="btn btn-primary submit-btn">ادفع الآن</button>
+            <button type="submit" class="btn btn-primary submit-btn">Pay securely</button>
           </form>
         </div>
 
         <aside class="checkout-card summary-card" aria-live="polite">
           <div class="summary-header">
-            <h3>ملخص الطلب</h3>
-            <span id="summaryCount">0 عناصر</span>
+            <h3>Order summary</h3>
+            <span id="summaryCount">0 items</span>
           </div>
 
           <div id="checkoutItems" class="checkout-items"></div>
@@ -180,15 +248,15 @@
           <div class="summary-divider"></div>
 
           <div class="summary-line">
-            <span>الإجمالي الفرعي</span>
+            <span>Subtotal</span>
             <strong id="subtotal">$0.00</strong>
           </div>
           <div class="summary-line">
-            <span>الشحن</span>
+            <span>Shipping</span>
             <strong id="shipping">$0.00</strong>
           </div>
           <div class="summary-line total-line">
-            <span>الإجمالي</span>
+            <span>Total</span>
             <strong id="totalPrice">$0.00</strong>
           </div>
         </aside>
@@ -199,18 +267,29 @@
       <div class="container footer-inner">
         <div class="brand-wrap">
           <a href="#" class="brand">M<span>ODON</span>STORE</a>
-          <p>منتجات مختارة للحياة العصرية.</p>
+          <p>Curated essentials for a modern lifestyle.</p>
         </div>
 
         <div class="footer-links">
-          <a href="#shop">المتجر</a>
-          <a href="#categories">الأقسام</a>
-          <a href="#checkout">الدفع</a>
+          <a href="#shop">Shop</a>
+          <a href="#categories">Categories</a>
+          <a href="#checkout">Checkout</a>
+          <a href="https://wa.me/212654283265" target="_blank" rel="noopener">WhatsApp: 0654283265</a>
         </div>
 
         <p class="copyright">MODONSTORE © 2026</p>
       </div>
     </footer>
+
+    <a
+      class="whatsapp-float"
+      href="https://wa.me/212654283265"
+      target="_blank"
+      rel="noopener"
+      aria-label="Contact via WhatsApp"
+    >
+      WhatsApp
+    </a>
 
     <script src="./app.js" defer></script>
   </body>
