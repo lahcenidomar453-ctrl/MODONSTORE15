@@ -357,12 +357,12 @@ function setCardMasking() {
   const cvcInput = paymentForm.querySelector('input[name="cvc"]');
 
   cardNumberInput.addEventListener('input', (event) => {
-    const digits = event.target.value.replace(/\D/g, '').slice(0, 16);
+    const digits = event.target.value.replace(/\\D/g, '').slice(0, 16);
     event.target.value = digits.replace(/(.{4})/g, '$1 ').trim();
   });
 
   expiryInput.addEventListener('input', (event) => {
-    let value = event.target.value.replace(/\D/g, '').slice(0, 4);
+    let value = event.target.value.replace(/\\D/g, '').slice(0, 4);
     if (value.length > 2) {
       value = `${value.slice(0, 2)}/${value.slice(2)}`;
     }
@@ -370,14 +370,14 @@ function setCardMasking() {
   });
 
   cvcInput.addEventListener('input', (event) => {
-    event.target.value = event.target.value.replace(/\D/g, '').slice(0, 4);
+    event.target.value = event.target.value.replace(/\\D/g, '').slice(0, 4);
   });
 }
 
 paymentForm.addEventListener('submit', (event) => {
   event.preventDefault();
 
-  const button = paymentForm.querySelector('button[type="submit"]');
+  const button = paymentForm.querySelector('button[type=\"submit\"]');
   button.textContent = 'Payment successful';
   button.disabled = true;
 
@@ -394,134 +394,3 @@ renderProducts();
 renderCheckout();
 setCardMasking();
 updateCartUI();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
