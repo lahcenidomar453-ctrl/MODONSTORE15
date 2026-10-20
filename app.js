@@ -445,3 +445,4 @@ const waLink = document.querySelector('.whatsapp-float');
 if (waLink) {
   waLink.setAttribute('href', `https://wa.me/${WA_NUMBER}`);
 }
+const ADMIN_PASSWORD = "modonstore2026";
